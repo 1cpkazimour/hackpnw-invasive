@@ -7,23 +7,34 @@ function getUrlJSONPromise(url) {
 }
 
 let imageFilenamesPromise = getUrlJSONPromise("/Image_Filenames.json");
-let plantsPromise = getUrlJSONPromise("/Counties/King.json");
+// let plantsPromise = getUrlJSONPromise("/Counties/King.json");
+let zipCountyPromise = getUrlJSONPromise("/Zip_County.json");
 
-Promise.all([imageFilenamesPromise, plantsPromise]).then(([imageFilenames, plants]) => {
-    let dataTable = document.getElementById("data_table");
+function onSearch() {
+    let zip = document.getElementById("zipinput").value;
+
+    document.getElementById("data").classList.add("hidden");
+    document.getElementById("data_table").innerHTML = "";
+
+    zipCountyPromise.then(zipCounty => {
+        let dataUrl = `/Counties/${zipCounty[zip]}.json`;
+        return Promise.all([imageFilenamesPromise, getUrlJSONPromise(dataUrl)]); // [imageFilenames, plants]
+    }).then(([imageFilenames, plants]) => {
+        let dataTable = document.getElementById("data_table");
    
-    for(plant of plants.invasive_species) {
-        let imageUrl = `https://plants.sc.egov.usda.gov/ImageLibrary/standard/${imageFilenames[plant.code]}`;
-
-        dataTable.insertAdjacentHTML('beforeend', `
-            <tr>
-                <td><img src="${imageUrl}"></td>
-                <td>${plant.common_name}</td>
-                <td><i>${plant.scientific_name}</i></td>
-                <td>${plant.impact}</td>
-            </tr>
-        `);
-    }
-
-    document.getElementById("data").classList.remove("hidden")
-})
+        for(plant of plants.invasive_species) {
+            let imageUrl = `https://plants.sc.egov.usda.gov/ImageLibrary/standard/${imageFilenames[plant.code]}`;
+    
+            dataTable.insertAdjacentHTML('beforeend', `
+                <tr>
+                    <td><img src="${imageUrl}"></td>
+                    <td>${plant.common_name}</td>
+                    <td><i>${plant.scientific_name}</i></td>
+                    <td>${plant.impact}</td>
+                </tr>
+            `);
+        }
+    
+        document.getElementById("data").classList.remove("hidden");
+    })
+}
