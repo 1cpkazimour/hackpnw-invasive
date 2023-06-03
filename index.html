@@ -6,27 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invasive Species to Avoid</title>
   <script src="script.js" defer></script>
+  <link rel="stylesheet" href="simple.min.css">
 </head>
 <body>
-  <h1>Invasive Plants</h1>
-  <input name="zip" id="zipinput"> <button name="search" id="searchbtn">Search</button>
-  <table>
-    <thead>
-      <tr>
-        <th>Picture</th>
-        <th>Common Name</th>
-        <th>Scientific Name</th>
-        <th>Impact</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><img src="https://www.invasivespeciesinfo.gov/sites/default/files/styles/extra_large/public/media/image/canada-thistle-1334019.jpg?itok=e8QohrWs" alt="Canada Thistle"></td>
-        <td>Canada Thistle</td>
-        <td>Cirsium arvense</td>
-        <td>Crowds out native species; reduces crop and forage yields</td>
-      </tr>
-    </tbody>
-  </table>
+  <header>
+    <h1>Invasive Plants</h1>
+  </header>
+  <main>
+    <p>Enter your zip code to search.</p>
+    <input name="zip" id="zipinput"> <button name="search" id="searchbtn">Search</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Picture</th>
+          <th>Common Name</th>
+          <th>Scientific Name</th>
+          <th>Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img src="https://www.invasivespeciesinfo.gov/sites/default/files/styles/extra_large/public/media/image/canada-thistle-1334019.jpg?itok=e8QohrWs" alt="Canada Thistle"></td>
+          <td>Canada Thistle</td>
+          <td>Cirsium arvense</td>
+          <td>Crowds out native species; reduces crop and forage yields</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
 </body>
 </html>
