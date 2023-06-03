@@ -7,7 +7,7 @@ function getUrlJSONPromise(url) {
 }
 
 let imageFilenamesPromise = getUrlJSONPromise("/Image_Filenames.json");
-let plantsPromise = getUrlJSONPromise("/Counties/King.json")
+let plantsPromise = getUrlJSONPromise("/Counties/King.json");
 
 Promise.all([imageFilenamesPromise, plantsPromise]).then(([imageFilenames, plants]) => {
     let dataTable = document.getElementById("data_table");
