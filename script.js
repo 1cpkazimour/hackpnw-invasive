@@ -1,21 +1,18 @@
-let imageFilenamesPromise = fetch("/Image_Filenames.json").then(resp => {
-    return resp.body.getReader().read();
-}).then(body => {
-    let textDecoder = new TextDecoder("utf-8");
-    return JSON.parse(textDecoder.decode(body.value));
-})
+/// Given a URL, return a promise to the JSON object at that URL
+function getUrlJSONPromise(url) {
+    return fetch(url).then(resp => resp.body.getReader().read()).then(body => {
+        let textDecoder = new TextDecoder("utf-8");
+        return JSON.parse(textDecoder.decode(body.value));
+    });
+}
 
-let plantsPromise = fetch("Counties/King.json").then(resp => {
-    return resp.body.getReader().read();
-}).then(body => {
-    let textDecoder = new TextDecoder("utf-8");
-    return JSON.parse(textDecoder.decode(body.value)).invasive_species;
-});
+let imageFilenamesPromise = getUrlJSONPromise("/Image_Filenames.json");
+let plantsPromise = getUrlJSONPromise("/Counties/King.json")
 
 Promise.all([imageFilenamesPromise, plantsPromise]).then(([imageFilenames, plants]) => {
     let dataTable = document.getElementById("data_table");
    
-    for(plant of plants) {
+    for(plant of plants.invasive_species) {
         let imageUrl = `https://plants.sc.egov.usda.gov/ImageLibrary/standard/${imageFilenames[plant.code]}`;
 
         dataTable.insertAdjacentHTML('beforeend', `
@@ -27,4 +24,6 @@ Promise.all([imageFilenamesPromise, plantsPromise]).then(([imageFilenames, plant
             </tr>
         `);
     }
+
+    document.getElementById("data").classList.remove("hidden")
 })

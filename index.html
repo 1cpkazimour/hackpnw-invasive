@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="simple.min.css">
   <link rel="prefetch" href="Counties/King.json">
   <link rel="prefetch" href="Image_Filenames.json">
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -17,7 +22,7 @@
   <main>
     <p>Enter your zip code to search.</p>
     <input name="zip" id="zipinput"> <button name="search" id="searchbtn">Search</button>
-    <table>
+    <table id="data" class="hidden">
       <thead>
         <tr>
           <th>Picture</th>
