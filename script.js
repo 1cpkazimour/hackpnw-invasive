@@ -31,7 +31,7 @@ function onSearch() {
     
             dataTable.insertAdjacentHTML('beforeend', `
                 <tr>
-                    <td><img src="${imageUrl}"></td>
+                    <td><img class="iimage" src="${imageUrl}"></td>
                     <td>${plant.common_name}</td>
                     <td><i>${plant.scientific_name}</i></td>
                     <td>${plant.impact}</td>
