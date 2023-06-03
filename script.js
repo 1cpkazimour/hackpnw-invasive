@@ -12,6 +12,10 @@ let zipCountyPromise = getUrlJSONPromise("/Zip_County.json");
 
 function onSearch() {
     let zip = document.getElementById("zipinput").value;
+    if (!/^\d{5}$/.test(zip)) {
+        alert("Invalid zip code! Please try again.");
+        return;
+    }
 
     document.getElementById("data").classList.add("hidden");
     document.getElementById("data_table").innerHTML = "";
