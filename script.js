@@ -5,7 +5,7 @@ let imageFilenamesPromise = fetch("/Image_Filenames.json").then(resp => {
     return JSON.parse(textDecoder.decode(body.value));
 })
 
-let plantsPromise = fetch("/Parsed_Info.json").then(resp => {
+let plantsPromise = fetch("Counties/King.json").then(resp => {
     return resp.body.getReader().read();
 }).then(body => {
     let textDecoder = new TextDecoder("utf-8");
@@ -17,7 +17,7 @@ Promise.all([imageFilenamesPromise, plantsPromise]).then(([imageFilenames, plant
    
     for(plant of plants) {
         let imageUrl = `https://plants.sc.egov.usda.gov/ImageLibrary/standard/${imageFilenames[plant.code]}`;
-        
+
         dataTable.insertAdjacentHTML('beforeend', `
             <tr>
                 <td><img src="${imageUrl}"></td>
