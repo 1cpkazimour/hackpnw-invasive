@@ -31,6 +31,8 @@ column1 = [row[0] for row in rows]
 column2 = [row[1] for row in rows]
 column3 = [row[2] for row in rows]
 
+pairs = [(row[1], row[35]) for row in rows]
+
 # Print the values of the first three columns
 print("Values in column 1:", column1)
 print("Values in column 2:", column2)
