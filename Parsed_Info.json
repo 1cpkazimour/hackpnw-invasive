@@ -1,6 +1,7 @@
 {
     "invasive_species": [
         {
+            "code": "CIAR4",
             "picture_url": "https://www.invasivespeciesinfo.gov/sites/default/files/styles/extra_large/public/media/image/canada-thistle-1334019.jpg?itok=e8QohrWs",
             "common_name": "Canada Thistle",
             "scientific_name": "Cirsium arvense",
