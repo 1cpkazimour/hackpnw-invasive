@@ -11,7 +11,7 @@ let data = fetch("/Parsed_Info.json").then(resp => {
             <tr>
                 <td><img src="${plant.picture_url}"></td>
                 <td>${plant.common_name}</td>
-                <td>${plant.scientific_name}</td>
+                <td><i>${plant.scientific_name}</i></td>
                 <td>${plant.impact}</td>
             </tr>
         `);
